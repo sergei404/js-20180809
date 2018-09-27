@@ -32,11 +32,31 @@ export default class PhonesPage {
       });
 
     this._catalog.on('phoneSelected', (event) => {
-      let phone = PhoneService.getPhone(event.detail)
+      let phonePromise = PhoneService.getPhone(event.detail)
         .then((phone) => {
           this._catalog.hide();
           this._viewer.showPhone(phone);
         });
+      // let clickPromise = new Promise((resolve) => {
+      //   document.oncontextmenu = () => {
+      //     resolve(123);
+      //   }
+      // })
+      //
+      // clickPromise
+      //   .then(() => phonePromise)
+      //   .then(phone => {
+      //     console.log(phone)
+      //   })
+
+      // Promise.all([phonePromise, clickPromise])
+      //   .then(([phone, clickResult]) => {
+      //     console.log(clickResult);
+      //     this._catalog.hide();
+      //     this._viewer.showPhone(phone);
+      //   });
+
+
     })
 
     this._catalog.on('addToShoppingCart', (event) => {
