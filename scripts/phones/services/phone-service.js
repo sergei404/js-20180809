@@ -1,5 +1,45 @@
 import HttpService from '../../common/services/http-service.js';
 
+const PhoneService = {
+  getPhones({ query = '', orderField = '' } = {}) {
+    return HttpService.sendRequest('/phones.json').then(phones => {
+        let filteredPhones = this._filter(phones, query);
+        let sortedPhones = this._sort(filteredPhones, orderField);
+
+        return sortedPhones;
+      });
+  },
+
+  getPhone(phoneId) {
+    return HttpService.sendRequest(`/${phoneId}.json`);
+  },
+
+  _filter(phones, query) {
+    return phones;
+  },
+
+  _sort(phones, orderField) {
+    return phones;
+  }
+}
+
+export default PhoneService
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class MyPromise {
   constructor(behaviorFunction) {
     this._successCallbacks = [];
@@ -44,32 +84,3 @@ class MyPromise {
     })
   }
 }
-
-const PhoneService = {
-  getPhones(callback) {
-    HttpService.sendRequest('/phones.json', callback);
-  },
-
-  getPhone(phoneId, callback) {
-    // HttpService.sendRequest(`/${phoneId}.json`,  callback);
-
-    let promise = this._sendRequest(`/${phoneId}.json`);
-    promise.then(callback, (error) => { console.error(error); });
-    promise.catch((error) => { console.log('catched error:', error); });
-    setTimeout(() => {
-      promise.then((result) => {
-        console.log(result);
-      })
-    }, 1000);
-  },
-
-  _sendRequest(url) {
-    let promise = new MyPromise((resolve, reject) => {
-      HttpService.sendRequest(url, resolve, reject);
-    });
-
-    return promise;
-  }
-}
-
-export default PhoneService
