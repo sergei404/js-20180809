@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/', {
   setHeaders: function(res, path) {
     res.set({
       'Keep-Alive': 'timeout=10',
-      'Access-Control-Allow-Origin': 'https://stasgavrylov.github.io',
+      'Access-Control-Allow-Origin': 'http://localhost:8081',
       // 'Access-Control-Allow-Methods': 'PUT',
       // 'Access-Control-Allow-Headers': 'Content-Type',
 

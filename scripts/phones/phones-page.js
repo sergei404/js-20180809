@@ -1,5 +1,5 @@
 import PhoneCatalog from './components/phone-catalog.js';
-import PhoneViewer from './components/phone-viewer.js';
+import PhoneViewer from './components/phone-viewer/phone-viewer.js';
 import PhoneFilter from './components/phone-filter.js';
 import ShoppingCart from './components/shopping-cart.js';
 
