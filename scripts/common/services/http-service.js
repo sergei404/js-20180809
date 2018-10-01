@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:3000/phones';
+const API_URL = 'https://stasgavrylov.github.io/js-20180809/phones/';
+// const API_URL = 'http://localhost:3000/phones';
+
 
 const HttpService = {
   sendRequest(url) {
