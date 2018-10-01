@@ -92,6 +92,24 @@ export default class PhonesPage {
     this._filter = new PhoneFilter({
       element: this._element.querySelector('[data-component="phone-filter"]')
     })
+
+    this._filter.on('sort', async (event) => {
+      try {
+        let phones = await PhoneService.getPhones({ orderField: event.detail });
+        this._catalog.showPhones(phones);
+      } catch (e) {
+        console.error(e);
+      }
+
+    })
+
+    this._filter.on('search', async (event) => {
+      let phones = await PhoneService.getPhones({ query: event.detail })
+        .catch(e => {
+          console.error(e);
+        })
+      this._catalog.showPhones(phones);
+    })
   }
 
   _render() {

@@ -15,11 +15,14 @@ const PhoneService = {
   },
 
   _filter(phones, query) {
-    return phones;
+    const lowerQuery = query.toLowerCase();
+    return phones.filter(phone => phone.name.toLowerCase().includes(lowerQuery));
   },
 
-  _sort(phones, orderField) {
-    return phones;
+  _sort(phones, field) {
+    return phones.sort((a,b) => {
+      return a[field] > b[field] ? 1 : -1;
+    })
   }
 }
 
