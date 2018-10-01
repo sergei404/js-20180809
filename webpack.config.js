@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -43,6 +44,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       API_URL: isProduction ? "'https://stasgavrylov.github.io/js-20180809/phones'" : "'http://localhost:3000/phones'"
+    }),
+    new UglifyJsPlugin({
+      sourceMap: !isProduction
     })
   ]
 };
